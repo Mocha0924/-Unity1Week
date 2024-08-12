@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class Player_Test : MonoBehaviour
 {
     [SerializeField] private PlayerInput MoveAction;
-    private InputAction moveAction;
     private Vector2 InputMove = Vector2.zero;
     [SerializeField] private float Speed=3;
     [SerializeField] private float JampForce = 200;
     [SerializeField] private float MaxSpeed;
-
+    private GameObject StartPoint;
     Rigidbody2D rb;
+    private GameManager gameManager => GameManager.Instance;
 
     public enum MoveMode 
     {
@@ -25,14 +25,13 @@ public class Player_Test : MonoBehaviour
     public MoveMode moveMode = MoveMode.Floor;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         MoveAction.actions["Move"].performed += OnMove;
         MoveAction.actions["Move"].canceled += OnMove;
         MoveAction.actions["Jump"].started += Jump;
         MoveAction.actions["GravityChange"].started += GravityChange;
-        moveAction = MoveAction.actions["Move"];
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -77,6 +76,33 @@ public class Player_Test : MonoBehaviour
         rb.gravityScale = (float)moveMode;
 
     }
+
+    public void PlayerReset()
+    {
+        moveMode = MoveMode.Ceiling;
+        rb.gravityScale = (float)moveMode;
+        StartPoint = GameObject.Find("StartPoint");
+        rb.velocity = Vector2.zero;
+        transform.position = StartPoint.transform.position;
+    }
+
+    public void Damage()
+    {
+        gameManager.ResetGame();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacles")
+        {
+            Damage();
+        }
+        else if(collision.gameObject.tag == "Goal")
+        {
+            gameManager.NextStage();
+        }
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -97,7 +123,7 @@ public class Player_Test : MonoBehaviour
         else
             Stop();
 
-        Debug.Log(rb.velocity.y);
+       
         if(rb.velocity.y >= MaxSpeed)
             rb.velocity = new Vector2 (rb.velocity.x, MaxSpeed);
         if (rb.velocity.y <= -MaxSpeed)
