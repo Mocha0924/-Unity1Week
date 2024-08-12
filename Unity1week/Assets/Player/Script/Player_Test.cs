@@ -82,11 +82,11 @@ public class Player_Test : MonoBehaviour
 
         if (moveMode == MoveMode.Floor)
         {
-            transform.localScale = new Vector3(transform.localScale.x, -2, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, -1, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(transform.localScale.x, 2, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
           
         }
 
