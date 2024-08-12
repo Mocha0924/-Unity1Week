@@ -65,11 +65,13 @@ public class Player_Test : MonoBehaviour
         {
             rb.velocity = new Vector2(-Speed, rb.velocity.y);
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(Speed, rb.velocity.y);
         }
-        
+        else
+            rb.velocity = Vector2.zero;
+
     }
     private void FixedUpdate()
     {
