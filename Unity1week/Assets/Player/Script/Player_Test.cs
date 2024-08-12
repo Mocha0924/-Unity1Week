@@ -8,8 +8,9 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private PlayerInput MoveAction;
     private InputAction moveAction;
     private Vector2 InputMove = Vector2.zero;
-    public float Speed=3;
-    public float JampForce = 200;
+    [SerializeField] private float Speed=3;
+    [SerializeField] private float JampForce = 200;
+    [SerializeField] private float MaxSpeed;
 
     Rigidbody2D rb;
 
@@ -95,6 +96,12 @@ public class Player_Test : MonoBehaviour
         
         else
             Stop();
+
+        Debug.Log(rb.velocity.y);
+        if(rb.velocity.y >= MaxSpeed)
+            rb.velocity = new Vector2 (rb.velocity.x, MaxSpeed);
+        if (rb.velocity.y <= -MaxSpeed)
+            rb.velocity = new Vector2(rb.velocity.x, -MaxSpeed);
     }
    
 }
