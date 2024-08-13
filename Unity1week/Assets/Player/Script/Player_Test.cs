@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,17 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private float Speed=3;
     [SerializeField] private float JampForce = 200;
     [SerializeField] private float MaxSpeed;
+    [SerializeField] private GameObject LandingEffect;
+    [SerializeField] private GameObject LandingEffectPos;
     private GameObject StartPoint;
     Rigidbody2D rb;
     private GameManager gameManager => GameManager.Instance;
     private bool isGround;
     private bool isGravityChange = true;
+    private bool PlayerStop = false;
+    private SoundManager soundManager => SoundManager.Instance;
+    [SerializeField] private AudioClip DeathSound;
+    [SerializeField] private AudioClip LandingSound;
 
     public enum MoveMode 
     {
@@ -59,7 +66,7 @@ public class Player_Test : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-        if(isGround)
+        if(isGround&&!PlayerStop)
         {
             if (moveMode == MoveMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
@@ -92,6 +99,7 @@ public class Player_Test : MonoBehaviour
 
     public void PlayerReset()
     {
+        PlayerStop = false;
         moveMode = MoveMode.Ceiling;
         rb.gravityScale = (float)moveMode;
         StartPoint = GameObject.Find("StartPoint");
@@ -101,7 +109,10 @@ public class Player_Test : MonoBehaviour
 
     public void Damage()
     {
+        PlayerStop = true;
+        soundManager.PlaySe(DeathSound,1);
         gameManager.ResetGame();
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,12 +130,24 @@ public class Player_Test : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(rb.velocity.y >= 5||rb.velocity.y <= -5)
+        {
+            soundManager.PlaySe(LandingSound, 1);
+            GameObject effect = Instantiate(LandingEffect, LandingEffectPos.transform.position, Quaternion.identity);
+            if (moveMode == MoveMode.Floor)
+                effect.transform.localScale = new Vector3(effect.transform.localScale.x, -effect.transform.localScale.y, 0);
+
+        }
+
+
         isGround = true;
         isGravityChange = true;
     }
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStop)
+            return;
         if(transform.position.x >= 15||
             transform.position.y >= 8||
             transform.position.x <= -15||
