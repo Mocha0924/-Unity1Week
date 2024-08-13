@@ -13,6 +13,8 @@ public class Player_Test : MonoBehaviour
     private GameObject StartPoint;
     Rigidbody2D rb;
     private GameManager gameManager => GameManager.Instance;
+    private bool isGround;
+    private bool isGravityChange = true;
 
     public enum MoveMode 
     {
@@ -57,23 +59,34 @@ public class Player_Test : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-        if (moveMode == MoveMode.Floor)
-            rb.AddForce(transform.up * -JampForce);
+        if(isGround)
+        {
+            if (moveMode == MoveMode.Floor)
+                rb.AddForce(transform.up * -JampForce);
 
-        else
-            rb.AddForce(transform.up * JampForce);
+            else
+                rb.AddForce(transform.up * JampForce);
 
-       
+            isGround = false;
+        }
+      
+
     }
 
     private void GravityChange(InputAction.CallbackContext context)
     {
-        if (moveMode == MoveMode.Floor)
-            moveMode = MoveMode.Ceiling;
-        else
-            moveMode = MoveMode.Floor;
+        if(isGravityChange)
+        {
+            if (moveMode == MoveMode.Floor)
+                moveMode = MoveMode.Ceiling;
+            else
+                moveMode = MoveMode.Floor;
 
-        rb.gravityScale = (float)moveMode;
+            rb.gravityScale = (float)moveMode;
+            isGround = false;
+            isGravityChange = false;
+        }
+       
 
     }
 
@@ -103,9 +116,22 @@ public class Player_Test : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        isGround = true;
+        isGravityChange = true;
+    }
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.x >= 15||
+            transform.position.y >= 8||
+            transform.position.x <= -15||
+            transform.position.y <= -8)
+        {
+            Damage(); 
+        }
 
         if (moveMode == MoveMode.Floor)
         {
