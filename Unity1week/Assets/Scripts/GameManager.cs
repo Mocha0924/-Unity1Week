@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image FadeImage;
     public static GameManager Instance;
     [SerializeField] private float FadeTime;
-
+    
     private void Awake()
     {
         if(Instance == null)

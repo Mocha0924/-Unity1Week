@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Player_Test : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private float Speed=3;
     [SerializeField] private float JampForce = 200;
     [SerializeField] private float MaxSpeed;
+    public float DeadX;
+    public float DeadY;
     [SerializeField] private GameObject LandingEffect;
     [SerializeField] private GameObject LandingEffectPos;
     private GameObject StartPoint;
@@ -18,12 +21,21 @@ public class Player_Test : MonoBehaviour
     private GameManager gameManager => GameManager.Instance;
     private bool isGround;
     public bool isGravityChange = true;
-    private bool PlayerStop = false;
+    public bool PlayerStop = false;
     private SoundManager soundManager => SoundManager.Instance;
+    [SerializeField] private AudioClip JumpSound;
+    [SerializeField] private AudioClip ChangeGravitySound;
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private AudioClip LandingSound;
 
     [SerializeField] private Animator PlayerAnimation;
+    [SerializeField] private Transform cam;
+
+    [SerializeField] private Vector3 positionStrength;
+    [SerializeField] private Vector3 rotationStrength;
+
+    [SerializeField]private float shakeDuration;
+
 
     public enum MoveMode 
     {
@@ -74,6 +86,7 @@ public class Player_Test : MonoBehaviour
     {
         if(isGround&&!PlayerStop)
         {
+            soundManager.PlaySe(JumpSound, 1);
             PlayerAnimation.SetInteger("Anim", 3);
             if (moveMode == MoveMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
@@ -89,7 +102,7 @@ public class Player_Test : MonoBehaviour
 
     private void GravityChange(InputAction.CallbackContext context)
     {
-        if(isGravityChange)
+        if(isGravityChange && !PlayerStop)
         {
             if (moveMode == MoveMode.Floor)
             {
@@ -102,8 +115,8 @@ public class Player_Test : MonoBehaviour
                 PlayerAnimation.SetBool("Down", true);
                 moveMode = MoveMode.Floor;
             }
-              
 
+            soundManager.PlaySe(ChangeGravitySound, 1);
             rb.gravityScale = (float)moveMode;
             isGround = false;
             isGravityChange = false;
@@ -124,6 +137,7 @@ public class Player_Test : MonoBehaviour
 
     public void Damage()
     {
+        CameraShaker();
         PlayerStop = true;
         soundManager.PlaySe(DeathSound,1);
         gameManager.ResetGame();
@@ -163,10 +177,10 @@ public class Player_Test : MonoBehaviour
     {
         if (PlayerStop)
             return;
-        if(transform.position.x >= 15||
-            transform.position.y >= 8||
-            transform.position.x <= -15||
-            transform.position.y <= -8)
+        if(transform.position.x >= DeadX||
+            transform.position.y >= DeadY||
+            transform.position.x <= -DeadX||
+            transform.position.y <= -DeadY)
         {
             Damage(); 
         }
@@ -198,7 +212,13 @@ public class Player_Test : MonoBehaviour
         else if(PlayerAnimation.GetInteger("Anim") == 2)
             PlayerAnimation.SetInteger("Anim", 0);
 
-        Debug.Log(rb.velocity.y);
+       
     }
-   
+    private void CameraShaker()
+    {
+        cam.DOComplete();
+        cam.DOShakePosition(shakeDuration, positionStrength);
+        cam.DOShakeRotation(shakeDuration, rotationStrength);
+    }
+
 }
