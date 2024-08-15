@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacles
   - Goal
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,7 @@ public class Player_Test : MonoBehaviour
     Rigidbody2D rb;
     private GameManager gameManager => GameManager.Instance;
     private bool isGround;
-    private bool isGravityChange = true;
+    public bool isGravityChange = true;
     private bool PlayerStop = false;
     private SoundManager soundManager => SoundManager.Instance;
     [SerializeField] private AudioClip DeathSound;
@@ -140,7 +140,7 @@ public class Player_Test : MonoBehaviour
         {
             gameManager.NextStage();
         }
-
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
