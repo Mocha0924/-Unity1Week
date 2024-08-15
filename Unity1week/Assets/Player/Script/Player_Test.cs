@@ -127,12 +127,12 @@ public class Player_Test : MonoBehaviour
 
     public void PlayerReset()
     {
-        PlayerStop = false;
         moveMode = MoveMode.Ceiling;
         rb.gravityScale = (float)moveMode;
         StartPoint = GameObject.Find("StartPoint");
         rb.velocity = Vector2.zero;
         transform.position = StartPoint.transform.position;
+        PlayerStop = false;
     }
 
     public void Damage()
