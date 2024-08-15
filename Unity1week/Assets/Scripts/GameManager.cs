@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
     }
     public void SetStage(int index)
     {
+        if (Stages.Length <= 0)
+        {
+            FadeImage.DOFade(0, FadeTime);
+            return;
+        }
+           
         FadeImage.DOFade(1, FadeTime)
             .OnComplete(() => 
             {

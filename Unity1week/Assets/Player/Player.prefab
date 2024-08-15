@@ -159,10 +159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveAction: {fileID: 8778260921775255811}
   Speed: 5
-  JampForce: 200
+  JampForce: 240
   MaxSpeed: 8
-  DeadX: 0
-  DeadY: 0
+  DeadX: 16
+  DeadY: 8
   LandingEffect: {fileID: 6448856431551145224, guid: 97441f8011407fa489ead8fb36d5946b, type: 3}
   LandingEffectPos: {fileID: 7573282097515308534}
   isGravityChange: 1

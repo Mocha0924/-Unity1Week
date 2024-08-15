@@ -146,6 +146,8 @@ public class Player_Test : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (PlayerStop)
+            return;
         if(collision.gameObject.tag == "Obstacles")
         {
             Damage();
