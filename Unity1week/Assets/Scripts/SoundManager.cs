@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance;
 
+    [SerializeField] float MasterVol =1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class SoundManager : MonoBehaviour
         GameObject SoundObj = Instantiate(SoundPlayObj);
         soundPlay = SoundObj.GetComponent<SoundPlay>();
 
-        soundPlay.PlaySE(Clip);
+        soundPlay.PlaySE(Clip,SEvol,MasterVol);
 
     }
 

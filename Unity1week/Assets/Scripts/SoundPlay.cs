@@ -21,9 +21,15 @@ public class SoundPlay : MonoBehaviour
         }
     }
 
-    public void PlaySE(AudioClip Clip) 
+    public void PlaySE(AudioClip Clip,float SEvol,float MasterVol) 
     { 
     audio.clip = Clip;
+        if (SEvol > 1) 
+        {
+            SEvol = 1;
+        }
+        
+        audio.volume = SEvol*MasterVol;
         audio.Play();
     }
 }
