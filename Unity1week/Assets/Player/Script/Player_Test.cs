@@ -23,6 +23,8 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private AudioClip LandingSound;
 
+    [SerializeField] private Animator PlayerAnimation;
+
     public enum MoveMode 
     {
 
@@ -51,6 +53,8 @@ public class Player_Test : MonoBehaviour
 
     private void Move()
     {
+        if(PlayerAnimation.GetInteger("Anim")<=0)
+            PlayerAnimation.SetInteger("Anim",1);
         if (InputMove.x >= 0.1f)
         {
             rb.velocity = new Vector2(Speed, rb.velocity.y);
@@ -62,12 +66,15 @@ public class Player_Test : MonoBehaviour
     }
     private void Stop()
     {
+        if (PlayerAnimation.GetInteger("Anim") <= 1)
+            PlayerAnimation.SetInteger("Anim", 0);
         rb.velocity = new Vector2(0,rb.velocity.y);
     }
     private void Jump(InputAction.CallbackContext context)
     {
         if(isGround&&!PlayerStop)
         {
+            PlayerAnimation.SetInteger("Anim", 3);
             if (moveMode == MoveMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
 
@@ -85,9 +92,17 @@ public class Player_Test : MonoBehaviour
         if(isGravityChange)
         {
             if (moveMode == MoveMode.Floor)
+            {
+                PlayerAnimation.SetBool("Down",false);
                 moveMode = MoveMode.Ceiling;
+            }
+                
             else
+            {
+                PlayerAnimation.SetBool("Down", true);
                 moveMode = MoveMode.Floor;
+            }
+              
 
             rb.gravityScale = (float)moveMode;
             isGround = false;
@@ -139,7 +154,7 @@ public class Player_Test : MonoBehaviour
 
         }
 
-
+      //  PlayerAnimation.SetInteger("Anim", 0);
         isGround = true;
         isGravityChange = true;
     }
@@ -177,6 +192,13 @@ public class Player_Test : MonoBehaviour
             rb.velocity = new Vector2 (rb.velocity.x, MaxSpeed);
         if (rb.velocity.y <= -MaxSpeed)
             rb.velocity = new Vector2(rb.velocity.x, -MaxSpeed);
+
+        if(rb.velocity.y < 0&& moveMode == MoveMode.Ceiling|| rb.velocity.y > 0 && moveMode == MoveMode.Floor)
+            PlayerAnimation.SetInteger("Anim", 2);
+        else if(PlayerAnimation.GetInteger("Anim") == 2)
+            PlayerAnimation.SetInteger("Anim", 0);
+
+        Debug.Log(rb.velocity.y);
     }
    
 }
