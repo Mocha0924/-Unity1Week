@@ -55,28 +55,28 @@ Tilemap:
     m_Data:
       e00: 0
       e01: 0
-      e02: 1.3224334e-38
-      e03: 1.3224334e-38
-      e10: 1.4e-43
+      e02: -1.9327386e+10
+      e03: -1.9327386e+10
+      e10: 0
       e11: 0
-      e12: 5.03e-43
-      e13: 5.03e-43
-      e20: -88.50525
-      e21: -7.460778e-25
-      e22: -4.150116e-19
-      e23: -45168.062
+      e12: 4.7e-43
+      e13: 4.7e-43
+      e20: 1.5455237e-13
+      e21: -1.4937357e-20
+      e22: 9.179045e-29
+      e23: -2.017006
       e30: 4.5905e-41
-      e31: 5.06e-43
-      e32: 5.03e-43
-      e33: 5.03e-43
+      e31: 4.72e-43
+      e32: 4.71e-43
+      e33: 4.72e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+    m_Data: {r: 7.1147e-41, g: 7.1147e-41, b: 7.1147e-41, a: 7.1147e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -10, y: -4, z: 0}
-  m_Size: {x: 20, y: 10, z: 1}
+  m_Size: {x: 20, y: 12, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
