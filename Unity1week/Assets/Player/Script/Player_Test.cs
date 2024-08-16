@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.LowLevel;
 
 public class Player_Test : MonoBehaviour
 {
@@ -35,17 +36,24 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private Vector3 rotationStrength;
 
     [SerializeField]private float shakeDuration;
+    public GameObject MagicSircle;
 
-
-    public enum MoveMode 
+    public enum GravityMode 
     {
 
         Ceiling = 1,
         Floor = -1
      
     }
+    private enum MoveMode
+    {
 
-    public MoveMode moveMode = MoveMode.Floor;
+        Right = 1,
+        Left = -1
+
+    }
+    public GravityMode gravityMode = GravityMode.Floor;
+    private MoveMode moveMode = MoveMode.Right;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,10 +77,12 @@ public class Player_Test : MonoBehaviour
             PlayerAnimation.SetInteger("Anim",1);
         if (InputMove.x >= 0.1f)
         {
+            moveMode = MoveMode.Right;
             rb.velocity = new Vector2(Speed, rb.velocity.y);
         }
         if (InputMove.x <= -0.1f)
         {
+            moveMode = MoveMode.Left;
             rb.velocity = new Vector2(-Speed, rb.velocity.y);
         }
     }
@@ -88,7 +98,7 @@ public class Player_Test : MonoBehaviour
         {
             soundManager.PlaySe(JumpSound, 1);
             PlayerAnimation.SetInteger("Anim", 3);
-            if (moveMode == MoveMode.Floor)
+            if (gravityMode == GravityMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
 
             else
@@ -104,34 +114,36 @@ public class Player_Test : MonoBehaviour
     {
         if(isGravityChange && !PlayerStop)
         {
-            if (moveMode == MoveMode.Floor)
+            if (gravityMode == GravityMode.Floor)
             {
-                PlayerAnimation.SetBool("Down",false);
-                moveMode = MoveMode.Ceiling;
+                PlayerAnimation.SetBool("Down",true);
+                gravityMode = GravityMode.Ceiling;
             }
                 
             else
             {
-                PlayerAnimation.SetBool("Down", true);
-                moveMode = MoveMode.Floor;
+                PlayerAnimation.SetBool("Down", false);
+                gravityMode = GravityMode.Floor;
             }
 
             soundManager.PlaySe(ChangeGravitySound, 1);
-            rb.gravityScale = (float)moveMode;
+            rb.gravityScale = (float)gravityMode;
             isGround = false;
-            isGravityChange = false;
+            InpossibleGravityChange();
         }
        
 
     }
 
-    public void PlayerReset()
+    public void PlayerReset(GameObject Start)
     {
-        moveMode = MoveMode.Ceiling;
-        rb.gravityScale = (float)moveMode;
-        StartPoint = GameObject.Find("StartPoint");
+        gravityMode = GravityMode.Ceiling;
+        rb.gravityScale = (float)gravityMode;
+        StartPoint = Start;
+        isGround = true;
         rb.velocity = Vector2.zero;
         transform.position = StartPoint.transform.position;
+        PossibleGravityChange();
         PlayerStop = false;
     }
 
@@ -140,7 +152,7 @@ public class Player_Test : MonoBehaviour
         CameraShaker();
         PlayerStop = true;
         soundManager.PlaySe(DeathSound,1);
-        gameManager.ResetGame();
+        gameManager.ContinueGame();
        
     }
 
@@ -154,6 +166,7 @@ public class Player_Test : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Goal")
         {
+            PlayerStop = true;
             gameManager.NextStage();
         }
       
@@ -165,15 +178,18 @@ public class Player_Test : MonoBehaviour
         {
             soundManager.PlaySe(LandingSound, 1);
             GameObject effect = Instantiate(LandingEffect, LandingEffectPos.transform.position, Quaternion.identity);
-            if (moveMode == MoveMode.Floor)
+            if (gravityMode == GravityMode.Floor)
                 effect.transform.localScale = new Vector3(effect.transform.localScale.x, -effect.transform.localScale.y, 0);
 
         }
 
-      //  PlayerAnimation.SetInteger("Anim", 0);
         isGround = true;
-        isGravityChange = true;
+        PossibleGravityChange();
+        //  PlayerAnimation.SetInteger("Anim", 0);
+
     }
+
+   
     // Update is called once per frame
     void Update()
     {
@@ -186,14 +202,14 @@ public class Player_Test : MonoBehaviour
         {
             Damage(); 
         }
-
-        if (moveMode == MoveMode.Floor)
+   
+        if (gravityMode == GravityMode.Floor)
         {
-            transform.localScale = new Vector3(transform.localScale.x, -1, transform.localScale.z);
+            transform.localScale = new Vector3((int)moveMode, -1, transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(transform.localScale.x, 1, transform.localScale.z);
+            transform.localScale = new Vector3((int)moveMode, 1, transform.localScale.z);
           
         }
 
@@ -209,7 +225,7 @@ public class Player_Test : MonoBehaviour
         if (rb.velocity.y <= -MaxSpeed)
             rb.velocity = new Vector2(rb.velocity.x, -MaxSpeed);
 
-        if(rb.velocity.y < 0&& moveMode == MoveMode.Ceiling|| rb.velocity.y > 0 && moveMode == MoveMode.Floor)
+        if(rb.velocity.y < 0&& gravityMode == GravityMode.Ceiling|| rb.velocity.y > 0 && gravityMode == GravityMode.Floor)
             PlayerAnimation.SetInteger("Anim", 2);
         else if(PlayerAnimation.GetInteger("Anim") == 2)
             PlayerAnimation.SetInteger("Anim", 0);
@@ -223,4 +239,15 @@ public class Player_Test : MonoBehaviour
         cam.DOShakeRotation(shakeDuration, rotationStrength);
     }
 
+    public void PossibleGravityChange()
+    {
+        isGravityChange = true;
+        MagicSircle.SetActive(true);
+    }
+
+    public void InpossibleGravityChange()
+    {
+        isGravityChange = false;
+        MagicSircle.SetActive(false);
+    }
 }

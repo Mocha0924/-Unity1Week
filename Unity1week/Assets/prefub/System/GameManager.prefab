@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stages: []
+  ClearStage: {fileID: 8892960861405537259, guid: fe1266e967052f545be39afd70943353, type: 3}
   Player: {fileID: 0}
   FadeImage: {fileID: 0}
   FadeTime: 0.5
+  StartPoint: {fileID: 0}

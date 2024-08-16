@@ -11,7 +11,7 @@ public class GetItemControler : MonoBehaviour
     {
        if(collision.gameObject.tag == "Item")
         {
-            player.isGravityChange = true;
+            player.PossibleGravityChange();
             Destroy(collision.gameObject);
         }
     }

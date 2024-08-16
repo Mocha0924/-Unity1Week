@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] Stages;
+    [SerializeField] private GameObject ClearStage;
     private int Index = 0;
     private GameObject NowStage;
     [SerializeField] private Player_Test Player;
     [SerializeField] private Image FadeImage;
     public static GameManager Instance;
     [SerializeField] private float FadeTime;
+    public GameObject StartPoint;
     
     private void Awake()
     {
@@ -41,24 +43,31 @@ public class GameManager : MonoBehaviour
         FadeImage.DOFade(1, FadeTime)
             .OnComplete(() => 
             {
+                GameObject stage;
                 if (index >= Stages.Length)
-                {
-                    Debug.LogError("ステージ選択範囲を超えています");
-                    return;
-                }
+                    stage = Instantiate(ClearStage);
+
+                else
+                    stage = Instantiate(Stages[index]);
 
                 if (NowStage != null)
                     Destroy(NowStage);
 
-                GameObject stage = Instantiate(Stages[index]);
+                StartPoint = stage.transform.Find("StartPoint").gameObject;
                 NowStage = stage;
-                Player.PlayerReset();
+                Player.PlayerReset(StartPoint);
                 FadeImage.DOFade(0, FadeTime);
             });
        
     }
-    public void ResetGame()
+    public void ContinueGame()
     {
+        SetStage(Index);
+    }
+
+    public void RestartGame()
+    {
+        Index = 0;
         SetStage(Index);
     }
 }
