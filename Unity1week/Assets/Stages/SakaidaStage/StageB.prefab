@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 7208437265369577905}
   m_Layer: 0
   m_Name: BackObject
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 7153038748516850298}
   m_Layer: 0
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
