@@ -33,6 +33,7 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private AudioClip ChangeGravitySound;
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private AudioClip LandingSound;
+    [SerializeField] private AudioClip GoalSound;
 
     [SerializeField] private Animator PlayerAnimation;
     [SerializeField] private Transform cam;
@@ -101,7 +102,7 @@ public class Player_Test : MonoBehaviour
     {
         if(isJump&&!PlayerStop)
         {
-            soundManager.PlaySe(JumpSound, 1);
+            soundManager.PlaySe(JumpSound);
             if (gravityMode == GravityMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
 
@@ -132,7 +133,7 @@ public class Player_Test : MonoBehaviour
             }
 
             Instantiate(ChangeGravityEffect, transform.position, Quaternion.identity);
-            soundManager.PlaySe(ChangeGravitySound, 1);
+            soundManager.PlaySe(ChangeGravitySound);
             rb.gravityScale = (float)gravityMode;
             isJump = false;
             InpossibleGravityChange();
@@ -158,7 +159,7 @@ public class Player_Test : MonoBehaviour
     {
         CameraShaker();
         PlayerStop = true;
-        soundManager.PlaySe(DeathSound,1);
+        soundManager.PlaySe(DeathSound);
         gameManager.ContinueGame();
        
     }
@@ -173,6 +174,7 @@ public class Player_Test : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Goal")
         {
+            soundManager.PlaySe(GoalSound);
             PlayerStop = true;
             gameManager.NextStage();
         }
@@ -183,7 +185,7 @@ public class Player_Test : MonoBehaviour
     {
         if(rb.velocity.y >= 5||rb.velocity.y <= -5)
         {
-            soundManager.PlaySe(LandingSound, 1);
+            soundManager.PlaySe(LandingSound);
             GameObject effect = Instantiate(LandingEffect, LandingEffectPos.transform.position, Quaternion.identity);
             if (gravityMode == GravityMode.Floor)
                 effect.transform.localScale = new Vector3(effect.transform.localScale.x, -effect.transform.localScale.y, 0);
@@ -235,7 +237,7 @@ public class Player_Test : MonoBehaviour
        
         if (ground)
         {
-            if (!ReGround)
+            if (!ReGround||ReGround&&!isJump)
             {
                 Landing();
                
@@ -245,6 +247,7 @@ public class Player_Test : MonoBehaviour
         else
         {
             SetAirAnimation();
+            isJump = false;
         }
       
 

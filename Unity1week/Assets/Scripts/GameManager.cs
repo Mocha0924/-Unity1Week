@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] Stages;
     [SerializeField] private GameObject ClearStage;
     private int Index = 0;
-    private GameObject NowStage;
+    [SerializeField] private GameObject NowStage;
     [SerializeField] private Player_Test Player;
     [SerializeField] private Image FadeImage;
     public static GameManager Instance;
@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject StartPoint;
     private float GameTime = 0;
     private bool TimeStop = true;
+
+    private SoundManager soundManager => SoundManager.Instance;
     private void Awake()
     {
         if(Instance == null)
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         FadeImage.color = Color.black;
+        soundManager.SetGameBGM();
         SetStage(Index);
     }
 
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         Index = 0;
         GameTime = 0;
+        soundManager.SetGameBGM();
         SetStage(Index);
     }
 }

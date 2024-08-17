@@ -12,20 +12,16 @@ public class TitleController : MonoBehaviour
     [SerializeField] private Image FadeImage;
     [SerializeField] private float FadeTime;
     [SerializeField] private AudioClip UIClip;
-    private InputAction _pressAnyKeyAction =
-                new InputAction(type: InputActionType.PassThrough, binding: "*/<Button>", interactions: "Press");
-
-    private void OnEnable() => _pressAnyKeyAction.Enable();
-    private void OnDisable() => _pressAnyKeyAction.Disable();
+   
     private bool isFirstPush = true;
     private SoundManager soundManager => SoundManager.Instance;
     
     private void Update()
     {
-        if (_pressAnyKeyAction.triggered)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             isFirstPush = false;
-            soundManager.PlaySe(UIClip,1);
+            soundManager.PlaySe(UIClip);
             FadeImage.DOFade(1, FadeTime)
            .OnComplete(() =>
            {

@@ -19,7 +19,7 @@ public class SoundTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B)) 
         {
-            soundManager.PlaySe(clip, 100);
+            soundManager.PlaySe(clip);
 
             GameObject CL_A = Instantiate(AAAAAAAA,transform.position,Quaternion.identity);
         }
