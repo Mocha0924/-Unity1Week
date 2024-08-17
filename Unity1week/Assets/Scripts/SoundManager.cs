@@ -16,11 +16,12 @@ public class SoundManager : MonoBehaviour
     {
         if (Instance = null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else 
-        { 
-        Instance = this;
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
         }
     }
 
