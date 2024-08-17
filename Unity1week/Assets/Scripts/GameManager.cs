@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private float FadeTime;
     public GameObject StartPoint;
-    
+    private float GameTime = 0;
+    private bool TimeStop = true;
     private void Awake()
     {
         if(Instance == null)
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
     {
         FadeImage.color = Color.black;
         SetStage(Index);
+    }
+
+    private void Update()
+    {
+        if (!TimeStop)
+            GameTime += Time.deltaTime;
     }
     public void NextStage()
     {
@@ -45,7 +52,11 @@ public class GameManager : MonoBehaviour
             {
                 GameObject stage;
                 if (index >= Stages.Length)
+                {
+                    TimeStop = true;
                     stage = Instantiate(ClearStage);
+                }
+                    
 
                 else
                     stage = Instantiate(Stages[index]);
@@ -56,7 +67,11 @@ public class GameManager : MonoBehaviour
                 StartPoint = stage.transform.Find("StartPoint").gameObject;
                 NowStage = stage;
                 Player.PlayerReset(StartPoint);
-                FadeImage.DOFade(0, FadeTime);
+                FadeImage.DOFade(0, FadeTime).OnComplete(() =>
+                { 
+                    TimeStop = false;
+                  
+                });
             });
        
     }
@@ -68,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Index = 0;
+        GameTime = 0;
         SetStage(Index);
     }
 }

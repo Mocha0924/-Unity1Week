@@ -20,7 +20,7 @@ public class Player_Test : MonoBehaviour
     private GameObject StartPoint;
     Rigidbody2D rb;
     private GameManager gameManager => GameManager.Instance;
-    private bool isGround;
+    private bool isJump;
     public bool isGravityChange = true;
     public bool PlayerStop = false;
     private SoundManager soundManager => SoundManager.Instance;
@@ -94,17 +94,17 @@ public class Player_Test : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext context)
     {
-        if(isGround&&!PlayerStop)
+        if(isJump&&!PlayerStop)
         {
             soundManager.PlaySe(JumpSound, 1);
-            PlayerAnimation.SetInteger("Anim", 3);
             if (gravityMode == GravityMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
 
             else
                 rb.AddForce(transform.up * JampForce);
 
-            isGround = false;
+            isJump = false;
+            PlayerAnimation.SetInteger("Anim", 2);
         }
       
 
@@ -128,7 +128,7 @@ public class Player_Test : MonoBehaviour
 
             soundManager.PlaySe(ChangeGravitySound, 1);
             rb.gravityScale = (float)gravityMode;
-            isGround = false;
+            isJump = false;
             InpossibleGravityChange();
         }
        
@@ -139,8 +139,9 @@ public class Player_Test : MonoBehaviour
     {
         gravityMode = GravityMode.Ceiling;
         rb.gravityScale = (float)gravityMode;
+        PlayerAnimation.SetBool("Down", true);
         StartPoint = Start;
-        isGround = true;
+        isJump = true;
         rb.velocity = Vector2.zero;
         transform.position = StartPoint.transform.position;
         PossibleGravityChange();
@@ -182,14 +183,20 @@ public class Player_Test : MonoBehaviour
                 effect.transform.localScale = new Vector3(effect.transform.localScale.x, -effect.transform.localScale.y, 0);
 
         }
-
-        isGround = true;
+        PlayerAnimation.SetInteger("Anim", 0);
+        isJump = true;
         PossibleGravityChange();
-        //  PlayerAnimation.SetInteger("Anim", 0);
 
     }
 
-   
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag !="Floor")
+        {
+            Debug.Log("ínñ Ç∆êGÇÍÇƒÇ¢Ç‹ÇπÇÒ");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -225,13 +232,13 @@ public class Player_Test : MonoBehaviour
         if (rb.velocity.y <= -MaxSpeed)
             rb.velocity = new Vector2(rb.velocity.x, -MaxSpeed);
 
-        if(rb.velocity.y < 0&& gravityMode == GravityMode.Ceiling|| rb.velocity.y > 0 && gravityMode == GravityMode.Floor)
-            PlayerAnimation.SetInteger("Anim", 2);
-        else if(PlayerAnimation.GetInteger("Anim") == 2)
-            PlayerAnimation.SetInteger("Anim", 0);
+      // if(PlayerAnimation.GetInteger("Anim")>=2)
+            SetAirAnimation();
 
        
     }
+
+   
     private void CameraShaker()
     {
         cam.DOComplete();
@@ -249,5 +256,25 @@ public class Player_Test : MonoBehaviour
     {
         isGravityChange = false;
         MagicSircle.SetActive(false);
+    }
+
+    public void SetAirAnimation()
+    {
+        if(gravityMode == GravityMode.Ceiling)
+        {
+            if(rb.velocity.y <=0)
+                PlayerAnimation.SetInteger("Anim", 2);
+            else
+                PlayerAnimation.SetInteger("Anim", 3);
+            
+        }
+        else
+        {
+            if (rb.velocity.y >= 0)
+                PlayerAnimation.SetInteger("Anim", 2);
+            else
+                PlayerAnimation.SetInteger("Anim", 3);
+          
+        }
     }
 }
