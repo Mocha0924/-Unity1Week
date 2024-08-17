@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
         BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
         soundManager.SetGameBGM();
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
                         BestTime = GameTime;
                         PlayerPrefs.SetFloat("Time", GameTime);
                         PlayerPrefs.Save();
-                        UnityroomApiClient.Instance.SendScore(1, BestTime, ScoreboardWriteMode.HighScoreDesc);
+                        UnityroomApiClient.Instance.SendScore(1, BestTime, ScoreboardWriteMode.HighScoreAsc);
                     }
                     stage = Instantiate(ClearStage);
                 }
