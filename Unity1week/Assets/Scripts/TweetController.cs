@@ -12,7 +12,7 @@ public class TweetController : MonoBehaviour
         gameObject.transform.DOScale(gameObject.transform.localScale*2,0.2f).OnComplete(() =>
         {
             gameObject.transform.DOScale(gameObject.transform.localScale / 2, 0.2f);
-            naichilab.UnityRoomTweet.Tweet("switchwitch", gameManager.GameTime.ToString("000.00")+ "秒でクリアしました\n#unity1week\n#SwitchWitch");
+            naichilab.UnityRoomTweet.Tweet("switchwitch", "私のベストタイムは"+ PlayerPrefs.GetFloat("Time", -1).ToString("000.00")+ "秒です\n#unity1week\n#SwitchWitch");
             gameManager.ContinueGame();
         });
     }

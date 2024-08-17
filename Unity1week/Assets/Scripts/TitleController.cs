@@ -18,7 +18,7 @@ public class TitleController : MonoBehaviour
     
     private void Update()
     {
-        if(Gamepad.current!=null)
+        if(Gamepad.current!=null&&isFirstPush)
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame || Gamepad.current.bButton.wasPressedThisFrame)
             {
@@ -33,7 +33,7 @@ public class TitleController : MonoBehaviour
         }
         else
         {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && isFirstPush)
             {
                 isFirstPush = false;
                 soundManager.PlaySe(UIClip);

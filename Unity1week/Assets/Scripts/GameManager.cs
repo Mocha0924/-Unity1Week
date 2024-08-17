@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using unityroom.Api;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] Stages;
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
     private bool TimeStop = true;
     private bool isClear = false;
     private SoundManager soundManager => SoundManager.Instance;
+    private float BestTime;
+    public bool isBest = false;
     private void Awake()
     {
         if(Instance == null)
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
         soundManager.SetGameBGM();
         SetStage(Index);
@@ -65,6 +70,14 @@ public class GameManager : MonoBehaviour
                     TimeStop = true;
                     isClear = true;
                     TimeText.text = "Time:" + GameTime.ToString("000.00");
+                    if(BestTime <=-1||BestTime>GameTime)
+                    {
+                        isBest = true;
+                        BestTime = GameTime;
+                        PlayerPrefs.SetFloat("Time", GameTime);
+                        PlayerPrefs.Save();
+                        UnityroomApiClient.Instance.SendScore(1, BestTime, ScoreboardWriteMode.HighScoreDesc);
+                    }
                     stage = Instantiate(ClearStage);
                 }
                     
@@ -93,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        isBest = false;
         TimeStop = false;
         isClear = false;
         Index = 0;
