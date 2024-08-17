@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 456612989de007945a64753f2e353116, type: 3}
+  AAAAAAAA: {fileID: 3652357215131720371, guid: 4c42169bde2f6274183e9c7f47d5d4d2, type: 3}
 --- !u!4 &430657987
 Transform:
   m_ObjectHideFlags: 0
@@ -283,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 430657985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1629214, y: -3.005228, z: 0.023188023}
+  m_LocalPosition: {x: -2.27, y: 1.6, z: 0.023188023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
