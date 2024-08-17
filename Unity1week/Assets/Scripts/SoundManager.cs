@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -9,12 +10,21 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance;
 
-    [SerializeField] float MasterVol =1f;
+    [SerializeField] private Slider BGMSlider;
+    [SerializeField] private Slider SESlider;
+    [SerializeField] float BGMMasterVol;
+    public float BGMVol = 1f;
+    public float SEVol = 1f;
+
+    private AudioSource BGMAudio;
+    [SerializeField] private AudioClip TitleBGM;
+    [SerializeField] private AudioClip GameBGM;
+    [SerializeField] private AudioClip ClearBGM;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Instance = null)
+        if (Instance != null)
         {
             Destroy(gameObject);
         }
@@ -23,22 +33,33 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
         }
+        BGMSlider.value = BGMVol;
+        SESlider.value = SEVol;
+        BGMAudio = GetComponent<AudioSource>();
+        BGMAudio.volume = BGMVol*BGMMasterVol;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetVol()
     {
-        
+        BGMVol = BGMSlider.value;
+        SEVol = SESlider.value;
+        BGMAudio.volume = BGMVol * BGMMasterVol;
     }
 
-    public void PlaySe(AudioClip Clip ,float SEvol) 
+    public void SetGameBGM()
+    {
+        BGMAudio.clip = GameBGM;
+        BGMAudio.Play();
+    }
+
+    public void PlaySe(AudioClip Clip) 
     {
         SoundPlay soundPlay;
         
         GameObject SoundObj = Instantiate(SoundPlayObj);
         soundPlay = SoundObj.GetComponent<SoundPlay>();
 
-        soundPlay.PlaySE(Clip,SEvol,MasterVol);
+        soundPlay.PlaySE(Clip,SEVol);
 
     }
 

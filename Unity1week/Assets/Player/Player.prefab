@@ -406,10 +406,11 @@ MonoBehaviour:
   ChangeGravityEffect: {fileID: 3652357215131720371, guid: 4c42169bde2f6274183e9c7f47d5d4d2, type: 3}
   isGravityChange: 1
   PlayerStop: 0
-  JumpSound: {fileID: 0}
-  ChangeGravitySound: {fileID: 0}
+  JumpSound: {fileID: 8300000, guid: a68b6f7616a71b54c98b019401348141, type: 3}
+  ChangeGravitySound: {fileID: 8300000, guid: 4f368899c3354964cbf579a55ad49ade, type: 3}
   DeathSound: {fileID: 8300000, guid: 73a3aeb5833e0c04fa3793ff5655c595, type: 3}
-  LandingSound: {fileID: 8300000, guid: a68b6f7616a71b54c98b019401348141, type: 3}
+  LandingSound: {fileID: 8300000, guid: 1d9770ad0a4953a4ba59eeaccfc88684, type: 3}
+  GoalSound: {fileID: 8300000, guid: c2f14077a3e78b64cba23f2d70b137f9, type: 3}
   PlayerAnimation: {fileID: 905306520747666021}
   cam: {fileID: 5333160046002760131}
   positionStrength: {x: 0, y: 0, z: 0}
@@ -621,3 +622,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5925177094580798736}
+  ItemGetSound: {fileID: 8300000, guid: dff48a5fc6422484599067b47a122a1a, type: 3}

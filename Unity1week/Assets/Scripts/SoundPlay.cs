@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundPlay : MonoBehaviour
 {
-    [SerializeField] AudioSource audio;
+    [SerializeField] AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -15,21 +15,21 @@ public class SoundPlay : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (!audio.isPlaying) 
+        if (!audioSource.isPlaying) 
         {
             Destroy(gameObject);
         }
     }
 
-    public void PlaySE(AudioClip Clip,float SEvol,float MasterVol) 
+    public void PlaySE(AudioClip Clip,float SEvol) 
     { 
-    audio.clip = Clip;
+    audioSource.clip = Clip;
         if (SEvol > 1) 
         {
             SEvol = 1;
         }
         
-        audio.volume = SEvol*MasterVol;
-        audio.Play();
+        audioSource.volume = SEvol;
+        audioSource.Play();
     }
 }
