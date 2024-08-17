@@ -3,6 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] Stages;
@@ -15,8 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float FadeTime;
     public GameObject StartPoint;
     private float GameTime = 0;
+    [SerializeField] private TextMeshProUGUI TimeText;
     private bool TimeStop = true;
-
+    private bool isClear = false;
     private SoundManager soundManager => SoundManager.Instance;
     private void Awake()
     {
@@ -35,7 +37,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!TimeStop)
+        {
             GameTime += Time.deltaTime;
+            TimeText.text = "Time:"+GameTime.ToString("000.00");
+        }
+          
     }
     public void NextStage()
     {
@@ -57,6 +63,8 @@ public class GameManager : MonoBehaviour
                 if (index >= Stages.Length)
                 {
                     TimeStop = true;
+                    isClear = true;
+                    TimeText.text = "Time:" + GameTime.ToString("000.00");
                     stage = Instantiate(ClearStage);
                 }
                     
@@ -72,8 +80,8 @@ public class GameManager : MonoBehaviour
                 Player.PlayerReset(StartPoint);
                 FadeImage.DOFade(0, FadeTime).OnComplete(() =>
                 { 
-                    TimeStop = false;
-                  
+                    if(!isClear)
+                        TimeStop = false;
                 });
             });
        
@@ -85,6 +93,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        TimeStop = false;
+        isClear = false;
         Index = 0;
         GameTime = 0;
         soundManager.SetGameBGM();

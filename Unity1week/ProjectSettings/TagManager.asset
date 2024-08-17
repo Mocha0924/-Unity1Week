@@ -8,6 +8,7 @@ TagManager:
   - Goal
   - Item
   - Floor
+  - RestartGoal
   layers:
   - Default
   - TransparentFX

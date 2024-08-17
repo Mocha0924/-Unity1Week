@@ -144,6 +144,8 @@ public class Player_Test : MonoBehaviour
 
     public void PlayerReset(GameObject Start)
     {
+        PlayerAnimation.SetInteger("Anim", 0);
+        gameObject.SetActive(true);
         gravityMode = GravityMode.Ceiling;
         rb.gravityScale = (float)gravityMode;
         PlayerAnimation.SetBool("Down", true);
@@ -158,6 +160,7 @@ public class Player_Test : MonoBehaviour
     public void Damage()
     {
         CameraShaker();
+        PlayerAnimation.SetInteger("Anim", 10);
         PlayerStop = true;
         soundManager.PlaySe(DeathSound);
         gameManager.ContinueGame();
@@ -174,11 +177,25 @@ public class Player_Test : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Goal")
         {
+            GoalController goal = collision.gameObject.GetComponent<GoalController>();
+            goal.SetGoal();
+            CameraShaker();
+            gameObject.SetActive(false);
             soundManager.PlaySe(GoalSound);
             PlayerStop = true;
             gameManager.NextStage();
         }
-      
+        else if (collision.gameObject.tag == "RestartGoal")
+        {
+            GoalController goal = collision.gameObject.GetComponent<GoalController>();
+            goal.SetGoal();
+            CameraShaker();
+            gameObject.SetActive(false);
+            soundManager.PlaySe(GoalSound);
+            PlayerStop = true;
+            gameManager.RestartGame();
+        }
+
     }
 
     private void Landing()

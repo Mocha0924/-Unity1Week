@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 817822765}
   - component: {fileID: 817822767}
   - component: {fileID: 817822766}
+  - component: {fileID: 817822768}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -363,8 +364,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press the Qkey start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
+  m_sharedMaterial: {fileID: -4727316676341203138, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -438,6 +439,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817822764}
   m_CullTransparentMesh: 1
+--- !u!114 &817822768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817822764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3debc55cb8aa61e4aac448598d1790f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoControllerText: Press the Qkey start
+  ControllerText: Press the AButton start
 --- !u!1 &938680467
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,8 +512,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Switch Witch
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
+  m_sharedMaterial: {fileID: -4727316676341203138, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -583,6 +598,7 @@ GameObject:
   - component: {fileID: 1076586341}
   - component: {fileID: 1076586340}
   - component: {fileID: 1076586342}
+  - component: {fileID: 1076586343}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -650,6 +666,20 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1076586343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076586338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3debc55cb8aa61e4aac448598d1790f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoControllerText: 
+  ControllerText: 
 --- !u!1 &1272984051
 GameObject:
   m_ObjectHideFlags: 0
