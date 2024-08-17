@@ -7,6 +7,7 @@ public class ButterflySpawn_Controller : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] GameObject Butterfly;
+    [SerializeField] GameObject Mahoujin;
 
 
 
@@ -25,6 +26,8 @@ public class ButterflySpawn_Controller : MonoBehaviour
     {
         Timer += Time.deltaTime;
         SpawnTimer += Time.deltaTime;
+
+        GameObject CL_Mahoujin = Instantiate(Mahoujin,transform.position,Quaternion.identity);
     }
     private void FixedUpdate()
     {
