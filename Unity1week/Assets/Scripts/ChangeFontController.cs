@@ -6,12 +6,13 @@ using TMPro;
 
 public class ChangeFontController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI ExplanationText;
-    [SerializeField] private string NoControllerText;
-    [SerializeField] private string ControllerText;
+    private TextMeshProUGUI ExplanationText;
+    [TextArea(1,3)][SerializeField] private string NoControllerText;
+    [TextArea(1,3)][SerializeField] private string ControllerText;
   
     private void Start()
     {
+        ExplanationText = GetComponent<TextMeshProUGUI>();
         var devices = InputSystem.devices;
    
         foreach (var device in devices)

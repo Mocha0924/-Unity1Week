@@ -18,15 +18,32 @@ public class TitleController : MonoBehaviour
     
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame||Gamepad.current.bButton.wasPressedThisFrame)
+        if(Gamepad.current!=null)
         {
-            isFirstPush = false;
-            soundManager.PlaySe(UIClip);
-            FadeImage.DOFade(1, FadeTime)
-           .OnComplete(() =>
-           {
-               SceneManager.LoadScene("MainGame");
-           });
+            if (Keyboard.current.spaceKey.wasPressedThisFrame || Gamepad.current.bButton.wasPressedThisFrame)
+            {
+                isFirstPush = false;
+                soundManager.PlaySe(UIClip);
+                FadeImage.DOFade(1, FadeTime)
+               .OnComplete(() =>
+               {
+                   SceneManager.LoadScene("MainGame");
+               });
+            }
         }
+        else
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                isFirstPush = false;
+                soundManager.PlaySe(UIClip);
+                FadeImage.DOFade(1, FadeTime)
+               .OnComplete(() =>
+               {
+                   SceneManager.LoadScene("MainGame");
+               });
+            }
+        }
+      
     }
 }

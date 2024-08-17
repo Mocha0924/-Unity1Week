@@ -195,7 +195,15 @@ public class Player_Test : MonoBehaviour
             PlayerStop = true;
             gameManager.RestartGame();
         }
-
+        else if(collision.gameObject.tag == "tweet")
+        {
+            TweetController tweet = collision.gameObject.GetComponent<TweetController>();
+            tweet.SetTweet();
+            CameraShaker();
+            gameObject.SetActive(false);
+            soundManager.PlaySe(GoalSound);
+            PlayerStop = true;
+        }
     }
 
     private void Landing()

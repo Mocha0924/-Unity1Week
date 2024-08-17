@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Floor
   - RestartGoal
+  - tweet
   layers:
   - Default
   - TransparentFX

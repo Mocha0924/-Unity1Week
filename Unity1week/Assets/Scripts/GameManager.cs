@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] private float FadeTime;
     public GameObject StartPoint;
-    private float GameTime = 0;
+    public float GameTime { get; private set; } = 0;
     [SerializeField] private TextMeshProUGUI TimeText;
     private bool TimeStop = true;
     private bool isClear = false;
