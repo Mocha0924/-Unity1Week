@@ -14,7 +14,8 @@ public class GetItemControler : MonoBehaviour
         {
             soundManager.PlaySe(ItemGetSound);
             player.PossibleGravityChange();
-            Destroy(collision.gameObject);
+            ItemController item = collision.gameObject.GetComponent<ItemController>();
+            item.TouchItem();
         }
     }
 }
