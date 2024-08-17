@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 491531595890738088}
   - component: {fileID: 6904266432370221431}
   - component: {fileID: 9005255701279833069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackObject
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 2075870664050690139}
   - component: {fileID: 3127203603770359536}
   - component: {fileID: 928497192605653265}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stage
   m_TagString: Floor
   m_Icon: {fileID: 0}

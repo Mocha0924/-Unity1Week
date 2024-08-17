@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 1416544857146230080}
   - component: {fileID: 8012324848772278426}
   - component: {fileID: 7153038748516850298}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stage
   m_TagString: Floor
   m_Icon: {fileID: 0}

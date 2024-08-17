@@ -17,6 +17,11 @@ public class Player_Test : MonoBehaviour
     public float DeadY;
     [SerializeField] private GameObject LandingEffect;
     [SerializeField] private GameObject LandingEffectPos;
+    [SerializeField] private LayerMask FloorLayer;
+    [SerializeField] private Transform StartGroundPos;
+    [SerializeField] private Transform FinishGroundPos;
+    private bool ReGround = true;
+    [SerializeField] private GameObject ChangeGravityEffect;
     private GameObject StartPoint;
     Rigidbody2D rb;
     private GameManager gameManager => GameManager.Instance;
@@ -126,6 +131,7 @@ public class Player_Test : MonoBehaviour
                 gravityMode = GravityMode.Floor;
             }
 
+            Instantiate(ChangeGravityEffect, transform.position, Quaternion.identity);
             soundManager.PlaySe(ChangeGravitySound, 1);
             rb.gravityScale = (float)gravityMode;
             isJump = false;
@@ -173,7 +179,7 @@ public class Player_Test : MonoBehaviour
       
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Landing()
     {
         if(rb.velocity.y >= 5||rb.velocity.y <= -5)
         {
@@ -189,13 +195,6 @@ public class Player_Test : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.gameObject.tag !="Floor")
-        {
-            Debug.Log("’n–Ê‚ÆG‚ê‚Ä‚¢‚Ü‚¹‚ñ");
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -232,9 +231,24 @@ public class Player_Test : MonoBehaviour
         if (rb.velocity.y <= -MaxSpeed)
             rb.velocity = new Vector2(rb.velocity.x, -MaxSpeed);
 
-      // if(PlayerAnimation.GetInteger("Anim")>=2)
-            SetAirAnimation();
+        bool ground = IsGround();
+       
+        if (ground)
+        {
+            if (!ReGround)
+            {
+                Landing();
+               
+            }
 
+        }
+        else
+        {
+            SetAirAnimation();
+        }
+      
+
+        ReGround = ground;
        
     }
 
@@ -276,5 +290,12 @@ public class Player_Test : MonoBehaviour
                 PlayerAnimation.SetInteger("Anim", 3);
           
         }
+    }
+
+    private bool IsGround()
+    {
+      
+        return Physics2D.Linecast(StartGroundPos.position - transform.right * 0.2f, FinishGroundPos.position - transform.right * 0.2f, FloorLayer) ||
+               Physics2D.Linecast(StartGroundPos.position + transform.right * 0.2f, FinishGroundPos.position + transform.right * 0.2f, FloorLayer);
     }
 }
