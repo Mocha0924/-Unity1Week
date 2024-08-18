@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();//ÅŒã‚Ìƒrƒ‹ƒh‚ÅÁ‚·
         BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
         soundManager.SetGameBGM();
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
                 GameObject stage;
                 if (index >= Stages.Length)
                 {
+                    soundManager.SetClearBGM();
                     TimeStop = true;
                     isClear = true;
                     TimeText.text = "Time:" + GameTime.ToString("000.00");

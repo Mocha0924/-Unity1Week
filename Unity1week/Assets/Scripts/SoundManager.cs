@@ -45,10 +45,23 @@ public class SoundManager : MonoBehaviour
         SEVol = SESlider.value;
         BGMAudio.volume = BGMVol * BGMMasterVol;
     }
-
+    public void SetTitleBGM()
+    {
+        BGMAudio.Stop();
+        BGMAudio.clip = TitleBGM;
+        BGMAudio.Play();
+    }
     public void SetGameBGM()
     {
+        BGMAudio.Stop();
         BGMAudio.clip = GameBGM;
+        BGMAudio.Play();
+    }
+
+    public void SetClearBGM()
+    {
+        BGMAudio.Stop();
+        BGMAudio.clip = ClearBGM;
         BGMAudio.Play();
     }
 
