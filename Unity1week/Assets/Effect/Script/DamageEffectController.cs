@@ -38,7 +38,7 @@ public class DamageEffectController : MonoBehaviour
         if (min > Limit)
             image.color = new Color32(255, 0, 0,0);
         else
-            image.color = new Color32(255, 0, 0, (byte)(38 -(38 * (min+1-Limit))));
+            image.color = new Color32(255, 0, 0, (byte)(60 -(60 * (min+1-Limit))));
 
 
        
