@@ -61,7 +61,7 @@ public class Player_Test : MonoBehaviour
         Left = -1
 
     }
-    public GravityMode gravityMode = GravityMode.Floor;
+    public GravityMode gravityMode;
     private MoveMode moveMode = MoveMode.Right;
 
     // Start is called before the first frame update
@@ -79,7 +79,10 @@ public class Player_Test : MonoBehaviour
         InputMove = context.ReadValue<Vector2>();
       
     }
-
+    private void Start()
+    {
+        gravityMode = GravityMode.Ceiling;
+    }
     private void Move()
     {
         if(PlayerAnimation.GetInteger("Anim")<=0)
@@ -162,11 +165,15 @@ public class Player_Test : MonoBehaviour
 
     public void Damage()
     {
-        CameraShaker();
-        PlayerAnimation.SetInteger("Anim", 10);
-        PlayerStop = true;
-        soundManager.PlaySe(DeathSound);
-        gameManager.ContinueGame();
+        if(gameManager != null)
+        {
+            CameraShaker();
+            PlayerAnimation.SetInteger("Anim", 10);
+            PlayerStop = true;
+            soundManager.PlaySe(DeathSound);
+            gameManager.ContinueGame();
+        }
+       
        
     }
 
@@ -180,13 +187,17 @@ public class Player_Test : MonoBehaviour
         }
         else if(collision.gameObject.tag == "Goal")
         {
-            GoalController goal = collision.gameObject.GetComponent<GoalController>();
-            goal.SetGoal();
-            CameraShaker();
-            gameObject.SetActive(false);
-            soundManager.PlaySe(GoalSound);
-            PlayerStop = true;
-            gameManager.NextStage();
+            if(gameManager!=null)
+            {
+                GoalController goal = collision.gameObject.GetComponent<GoalController>();
+                goal.SetGoal();
+                CameraShaker();
+                gameObject.SetActive(false);
+                soundManager.PlaySe(GoalSound);
+                PlayerStop = true;
+                gameManager.NextStage();
+            }
+           
         }
         else if (collision.gameObject.tag == "RestartGoal")
         {
