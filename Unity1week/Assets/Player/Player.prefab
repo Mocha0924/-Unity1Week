@@ -394,7 +394,7 @@ MonoBehaviour:
   Speed: 5
   JampForce: 240
   MaxSpeed: 8
-  DeadX: 16
+  DeadX: 20
   DeadY: 8
   LandingEffect: {fileID: 6448856431551145224, guid: 97441f8011407fa489ead8fb36d5946b, type: 3}
   LandingEffectPos: {fileID: 7573282097515308534}

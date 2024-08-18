@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip GameBGM;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance != null)
         {
