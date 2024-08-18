@@ -8,6 +8,7 @@ using UnityEngine.LowLevel;
 using System;
 using UnityEngine.SocialPlatforms;
 using unityroom.Api;
+using UnityEngine.XR;
 
 public class Player_Test : MonoBehaviour
 {
@@ -167,6 +168,12 @@ public class Player_Test : MonoBehaviour
     {
         if(gameManager != null)
         {
+            rb.velocity = Vector2.zero;
+            if (gravityMode == GravityMode.Floor)
+                rb.AddForce(transform.up * -JampForce + (transform.right* JampForce*-1 ));
+
+            else
+                rb.AddForce(transform.up * JampForce + (transform.right * JampForce* -1 ));
             CameraShaker();
             PlayerAnimation.SetInteger("Anim", 10);
             PlayerStop = true;
