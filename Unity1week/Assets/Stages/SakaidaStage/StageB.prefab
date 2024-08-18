@@ -247,7 +247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3055\u3086\u3046\u30AD\u30FC\u3000\u3044\u3069\u3046"
+  m_text: "Q\u30AD\u30FC\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
   m_sharedMaterial: {fileID: -4727316676341203138, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3debc55cb8aa61e4aac448598d1790f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoControllerText: "W\u30AD\u30FC\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\u201D\u304B\u3048\u3059\u201D"
-  ControllerText: "B\u30DC\u30BF\u30F3\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\u201D\u304B\u3048\u3059\u201D"
+  NoControllerText: "Q\u30AD\u30FC\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
+  ControllerText: "B\u30DC\u30BF\u30F3\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
 --- !u!1 &6111986583259521505
 GameObject:
   m_ObjectHideFlags: 0
