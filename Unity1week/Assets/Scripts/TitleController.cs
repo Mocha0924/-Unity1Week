@@ -18,7 +18,7 @@ public class TitleController : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
+
         soundManager.SetGameBGM();
     }
     private void Update()
