@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3debc55cb8aa61e4aac448598d1790f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoControllerText: "\u30B9\u30DA\u30FC\u30B9\u30AD\u30FC\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
+  NoControllerText: "Q\u30AD\u30FC\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
   ControllerText: "B\u30DC\u30BF\u30F3\u3000\u3058\u3085\u3046\u308A\u3087\u304F\u3092\"\u304B\u3048\u3059\""
 --- !u!1 &4868230268407949536
 GameObject:
