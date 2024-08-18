@@ -354,7 +354,7 @@ public class Player_Test : MonoBehaviour
     private bool IsGround()
     {
       
-        return Physics2D.Linecast(StartGroundPos.position - transform.right * 0.2f, FinishGroundPos.position, FloorLayer) ||
-               Physics2D.Linecast(StartGroundPos.position + transform.right * 0.2f, FinishGroundPos.position, FloorLayer);
+        return Physics2D.Linecast(StartGroundPos.position - transform.right * 0.1f, FinishGroundPos.position, FloorLayer) ||
+               Physics2D.Linecast(StartGroundPos.position + transform.right * 0.1f, FinishGroundPos.position, FloorLayer);
     }
 }
