@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        PlayerPrefs.DeleteAll();//ÅŒã‚Ìƒrƒ‹ƒh‚ÅÁ‚·
         BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
         SetStage(Index);
