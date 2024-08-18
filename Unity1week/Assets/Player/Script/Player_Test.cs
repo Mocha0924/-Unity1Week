@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.LowLevel;
+using System;
+using UnityEngine.SocialPlatforms;
+using unityroom.Api;
 
 public class Player_Test : MonoBehaviour
 {
@@ -218,7 +221,11 @@ public class Player_Test : MonoBehaviour
         }
         PlayerAnimation.SetInteger("Anim", 0);
         isJump = true;
-        PossibleGravityChange();
+        if(!isGravityChange)
+        {
+            PossibleGravityChange();
+        }
+      
 
     }
 
@@ -290,14 +297,20 @@ public class Player_Test : MonoBehaviour
 
     public void PossibleGravityChange()
     {
+        MagicSircle.transform.DOComplete();
         isGravityChange = true;
         MagicSircle.SetActive(true);
+        MagicSircle.transform.localScale = Vector3.zero;
+        MagicSircle.transform.DOScale(Vector3.one*2,0.2f);
+
     }
 
     public void InpossibleGravityChange()
     {
+       
         isGravityChange = false;
         MagicSircle.SetActive(false);
+
     }
 
     public void SetAirAnimation()

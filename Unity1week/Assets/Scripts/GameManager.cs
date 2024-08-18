@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TimeText;
     private bool TimeStop = true;
     private bool isClear = false;
-    private SoundManager soundManager => SoundManager.Instance;
     private float BestTime;
     public bool isBest = false;
     private void Awake()
@@ -36,7 +35,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();//ÅŒã‚Ìƒrƒ‹ƒh‚ÅÁ‚·
         BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
-        soundManager.SetGameBGM();
         SetStage(Index);
     }
 
@@ -68,7 +66,6 @@ public class GameManager : MonoBehaviour
                 GameObject stage;
                 if (index >= Stages.Length)
                 {
-                    soundManager.SetClearBGM();
                     TimeStop = true;
                     isClear = true;
                     TimeText.text = "Time:" + GameTime.ToString("000.00");
@@ -91,6 +88,13 @@ public class GameManager : MonoBehaviour
                     Destroy(NowStage);
 
                 StartPoint = stage.transform.Find("StartPoint").gameObject;
+                StartController start = StartPoint.GetComponent<StartController>();
+                if (isClear)
+                    start.text.text = "Clear";
+                else
+                    start.text.text = (index + 1).ToString() + "/"+ Stages.Length;
+                
+                    
                 NowStage = stage;
                 Player.PlayerReset(StartPoint);
                 FadeImage.DOFade(0, FadeTime).OnComplete(() =>
@@ -109,11 +113,9 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         isBest = false;
-        TimeStop = false;
         isClear = false;
         Index = 0;
         GameTime = 0;
-        soundManager.SetGameBGM();
         SetStage(Index);
     }
 }

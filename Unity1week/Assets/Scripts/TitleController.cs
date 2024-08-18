@@ -18,7 +18,7 @@ public class TitleController : MonoBehaviour
 
     private void Start()
     {
-        soundManager.SetTitleBGM();
+        soundManager.SetGameBGM();
     }
     private void Update()
     {

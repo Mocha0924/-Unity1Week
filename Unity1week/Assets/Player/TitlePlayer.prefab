@@ -496,6 +496,7 @@ MonoBehaviour:
   LandingSound: {fileID: 8300000, guid: 1d9770ad0a4953a4ba59eeaccfc88684, type: 3}
   PlayerAnimation: {fileID: 905306520747666021}
   MagicSircle: {fileID: 1215046426186017451}
+  MaxTime: 5
   gravityMode: -1
 --- !u!1 &7573282097515308534
 GameObject:

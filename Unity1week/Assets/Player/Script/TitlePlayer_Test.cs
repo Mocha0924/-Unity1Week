@@ -27,6 +27,10 @@ public class TitlePlayer_Test : MonoBehaviour
   
     public GameObject MagicSircle;
 
+    [SerializeField] private float MaxTime;
+    private float GameTime;
+
+
     public enum GravityMode 
     {
 
@@ -34,6 +38,8 @@ public class TitlePlayer_Test : MonoBehaviour
         Floor = -1
      
     }
+
+    
 
     public GravityMode gravityMode;
     // Start is called before the first frame update
@@ -55,6 +61,29 @@ public class TitlePlayer_Test : MonoBehaviour
         rb.gravityScale = (float)gravityMode;
     }
 
+    private void TimeGravityChange()
+    {
+        if (isGravityChange)
+        {
+            if (gravityMode == GravityMode.Floor)
+            {
+                PlayerAnimation.SetBool("Down", true);
+                gravityMode = GravityMode.Ceiling;
+            }
+
+            else
+            {
+                PlayerAnimation.SetBool("Down", false);
+                gravityMode = GravityMode.Floor;
+            }
+
+            Instantiate(ChangeGravityEffect, transform.position, Quaternion.identity);
+            soundManager.PlaySe(ChangeGravitySound);
+            rb.gravityScale = (float)gravityMode;
+
+            InpossibleGravityChange();
+        }
+    }
     private void GravityChange(InputAction.CallbackContext context)
     {
         if(isGravityChange)
@@ -103,8 +132,19 @@ public class TitlePlayer_Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-   
+        if (isGravityChange)
+            GameTime+=Time.deltaTime;
+
+        else
+            GameTime = 0;
+
+        if (GameTime >= MaxTime)
+        {
+            TimeGravityChange();
+            GameTime = 0;
+        }
+
+
         if (gravityMode == GravityMode.Floor)
         {
             transform.localScale = new Vector3(-1, -1, transform.localScale.z);
