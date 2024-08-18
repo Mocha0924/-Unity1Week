@@ -572,19 +572,35 @@ PrefabInstance:
       objectReference: {fileID: 530670879}
     - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[0]
       value: 
-      objectReference: {fileID: 7083490669864956983, guid: 0f77184a260f5674796323dbc30dbb83, type: 3}
+      objectReference: {fileID: 7451912243927663324, guid: 6cfd6c451eacf22489656a8a51c9a2c6, type: 3}
+    - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: Stages.Array.data[1]
+      value: 
+      objectReference: {fileID: 7793181486775561220, guid: f2868715991775d498a74de4854c4196, type: 3}
+    - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: Stages.Array.data[2]
+      value: 
+      objectReference: {fileID: 1577344687875190152, guid: 035c76de2d548f248bee64692f7c2e33, type: 3}
+    - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: Stages.Array.data[3]
+      value: 
+      objectReference: {fileID: 6764463265075239307, guid: 9b4e97ad055ea9346aa6faa76a93b15c, type: 3}
+    - target: {fileID: 1377231899019523799, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: Stages.Array.data[4]
+      value: 
+      objectReference: {fileID: 1558540644203066379, guid: d3d112f1248360d478f3fb9b5ef71057, type: 3}
     - target: {fileID: 4171537288093726057, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: m_Name
       value: GameManager (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4171537288093726057, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7056059946611027088, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: m_LocalPosition.x
