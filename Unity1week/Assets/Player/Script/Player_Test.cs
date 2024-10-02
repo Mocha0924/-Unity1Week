@@ -109,6 +109,7 @@ public class Player_Test : MonoBehaviour
     {
         if(isJump&&!PlayerStop)
         {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             soundManager.PlaySe(JumpSound);
             if (gravityMode == GravityMode.Floor)
                 rb.AddForce(transform.up * -JampForce);
