@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject StartPoint;
     public float GameTime { get; private set; } = 0;
     [SerializeField] private TextMeshProUGUI TimeText;
-    private bool TimeStop = true;
+    [NonSerialized]public bool TimeStop = true;
     private bool isClear = false;
     private float BestTime;
     public bool isBest = false;
@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
         isClear = false;
         Index = 0;
         GameTime = 0;
+        TimeText.text = "Time:" + GameTime.ToString("000.00");
         SetStage(Index);
     }
 }

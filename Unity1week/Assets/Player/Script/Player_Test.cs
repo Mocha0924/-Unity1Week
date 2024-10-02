@@ -73,6 +73,8 @@ public class Player_Test : MonoBehaviour
         MoveAction.actions["Move"].canceled += OnMove;
         MoveAction.actions["Jump"].started += Jump;
         MoveAction.actions["GravityChange"].started += GravityChange;
+        MoveAction.actions["Restart"].performed += Restart;
+
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -359,5 +361,12 @@ public class Player_Test : MonoBehaviour
       
         return Physics2D.Linecast(StartGroundPos.position - transform.right * 0.1f, FinishGroundPos.position, FloorLayer) ||
                Physics2D.Linecast(StartGroundPos.position + transform.right * 0.1f, FinishGroundPos.position, FloorLayer);
+    }
+
+    private void Restart(InputAction.CallbackContext context)
+    {
+        PlayerStop = true;
+        gameManager.TimeStop = true;
+        gameManager.RestartGame();
     }
 }
