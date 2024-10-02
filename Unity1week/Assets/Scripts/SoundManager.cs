@@ -13,8 +13,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private Slider BGMSlider;
     [SerializeField] private Slider SESlider;
     [SerializeField] float BGMMasterVol;
-    public float BGMVol = 1f;
-    public float SEVol = 1f;
+    [SerializeField] private float BGMVol;
+    [SerializeField] private float SEVol;
 
     private AudioSource BGMAudio;
     [SerializeField] private AudioClip GameBGM;
@@ -31,19 +31,28 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
         }
-        BGMSlider.value = BGMVol;
-        SESlider.value = SEVol;
-        BGMAudio = GetComponent<AudioSource>();
-        BGMAudio.volume = BGMVol*BGMMasterVol;
+       
     }
 
-    public void SetVol()
+    private void Start()
+    {
+        BGMAudio = GetComponent<AudioSource>();
+        BGMSlider.value = BGMVol;
+        SESlider.value = SEVol;
+        BGMAudio.volume = BGMVol * BGMMasterVol;
+        SetGameBGM();
+    }
+    public void BGMSetVol()
     {
         BGMVol = BGMSlider.value;
-        SEVol = SESlider.value;
         BGMAudio.volume = BGMVol * BGMMasterVol;
     }
    
+
+    public void SESetvol()
+    {
+        SEVol = SESlider.value;
+    }
     public void SetGameBGM()
     {
         BGMAudio.Stop();

@@ -16,11 +16,7 @@ public class TitleController : MonoBehaviour
     private bool isFirstPush = true;
     private SoundManager soundManager => SoundManager.Instance;
 
-    private void Start()
-    {
-
-        soundManager.SetGameBGM();
-    }
+   
     private void Update()
     {
         if(Gamepad.current!=null&&isFirstPush)
