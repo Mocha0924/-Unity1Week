@@ -5,11 +5,15 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 using unityroom.Api;
+using System.Runtime.CompilerServices;
+
 
 public class GameManager : MonoBehaviour
+
 {
-    [SerializeField] private GameObject[] Stages;
-    [SerializeField] private GameObject ClearStage;
+
+    [SerializeField] private Stage[] Stages;
+    [SerializeField] private Stage ClearStage;
     private int Index = 0;
     [SerializeField] private GameObject NowStage;
     [SerializeField] private Player_Test Player;
@@ -20,6 +24,7 @@ public class GameManager : MonoBehaviour
     public float GameTime { get; private set; } = 0;
     [SerializeField] private TextMeshProUGUI TimeText;
     [NonSerialized]public bool TimeStop = true;
+    [SerializeField] private Camera MainCamera;
     private bool isClear = false;
     private float BestTime;
     public bool isBest = false;
@@ -76,12 +81,16 @@ public class GameManager : MonoBehaviour
                         PlayerPrefs.Save();
                         UnityroomApiClient.Instance.SendScore(1, BestTime, ScoreboardWriteMode.HighScoreAsc);
                     }
-                    stage = Instantiate(ClearStage);
+                    stage = Instantiate(ClearStage.StageOb);
+                    MainCamera.orthographicSize = ClearStage.CameraSize;
                 }
                     
 
                 else
-                    stage = Instantiate(Stages[index]);
+                {
+                    stage = Instantiate(Stages[index].StageOb);
+                    MainCamera.orthographicSize = Stages[index].CameraSize;
+                }
 
                 if (NowStage != null)
                     Destroy(NowStage);
