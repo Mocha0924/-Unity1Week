@@ -132,12 +132,14 @@ public class Player_Test : MonoBehaviour
             {
                 PlayerAnimation.SetBool("Down",true);
                 gravityMode = GravityMode.Ceiling;
+                transform.position += new Vector3(0, 0.093f, 0);
             }
                 
             else
             {
                 PlayerAnimation.SetBool("Down", false);
                 gravityMode = GravityMode.Floor;
+                transform.position -= new Vector3(0, 0.093f, 0);
             }
 
             Instantiate(ChangeGravityEffect, transform.position, Quaternion.identity);
@@ -269,7 +271,7 @@ public class Player_Test : MonoBehaviour
         else
         {
             transform.localScale = new Vector3((int)moveMode, 1, transform.localScale.z);
-          
+           
         }
 
         if (InputMove != Vector2.zero)
