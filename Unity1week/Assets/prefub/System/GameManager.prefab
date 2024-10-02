@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7056059946611027088}
   - component: {fileID: 2079342873937237404}
   - component: {fileID: 4026595638886765862}
-  - component: {fileID: 1377231899019523799}
+  - component: {fileID: 6809653639003873641}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &1377231899019523799
+--- !u!114 &6809653639003873641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,8 +92,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stages: []
-  ClearStage: {fileID: 8892960861405537259, guid: fe1266e967052f545be39afd70943353, type: 3}
+  ClearStage:
+    StageOb: {fileID: 0}
+    CameraSize: 0
+  NowStage: {fileID: 0}
   Player: {fileID: 0}
   FadeImage: {fileID: 0}
-  FadeTime: 0.5
+  FadeTime: 0
   StartPoint: {fileID: 0}
+  TimeText: {fileID: 0}
+  MainCamera: {fileID: 0}
+  isBest: 0

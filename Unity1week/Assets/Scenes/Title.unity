@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3014758000771741230, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BGMSetVol
+      objectReference: {fileID: 0}
     - target: {fileID: 4007881042225767154, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -155,6 +159,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4702893700774286863, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: SEVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702893700774286863, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: BGMVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702893700774286863, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: BGMSlider
+      value: 
+      objectReference: {fileID: 1930354960}
     - target: {fileID: 6286054539983184527, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -166,6 +182,10 @@ PrefabInstance:
     - target: {fileID: 6286054539983184527, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7596794863845031151, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SESetvol
       objectReference: {fileID: 0}
     - target: {fileID: 7934680776276671677, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2365,6 +2385,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f662146fd4936c4eb6d56fb585fd7f0, type: 3}
+--- !u!114 &1930354960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3014758000771741230, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+  m_PrefabInstance: {fileID: 47080112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954933809
 GameObject:
   m_ObjectHideFlags: 0
