@@ -17,6 +17,8 @@ public class Player_Test : MonoBehaviour
     [SerializeField] private float Speed=3;
     [SerializeField] private float JampForce = 200;
     [SerializeField] private float MaxSpeed;
+    public float StandardDeadX { get; private set; }
+    public float StandardDeadY { get; private set; }
     public float DeadX;
     public float DeadY;
     [SerializeField] private GameObject LandingEffect;
@@ -85,6 +87,8 @@ public class Player_Test : MonoBehaviour
     private void Start()
     {
         gravityMode = GravityMode.Ceiling;
+        StandardDeadX = DeadX;
+        StandardDeadY = DeadY;
     }
     private void Move()
     {

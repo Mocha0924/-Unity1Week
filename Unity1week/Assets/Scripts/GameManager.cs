@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
                     }
                     stage = Instantiate(ClearStage.StageOb);
                     MainCamera.orthographicSize = ClearStage.CameraSize;
+                    Player.DeadX = Player.StandardDeadX * (ClearStage.CameraSize / 6.0f);
+                    Player.DeadY = Player.StandardDeadY * (ClearStage.CameraSize / 6.0f);
                 }
                     
 
@@ -90,6 +92,8 @@ public class GameManager : MonoBehaviour
                 {
                     stage = Instantiate(Stages[index].StageOb);
                     MainCamera.orthographicSize = Stages[index].CameraSize;
+                    Player.DeadX = Player.StandardDeadX * (Stages[index].CameraSize / 6.0f);
+                    Player.DeadY = Player.StandardDeadY * (Stages[index].CameraSize / 6.0f);
                 }
 
                 if (NowStage != null)
