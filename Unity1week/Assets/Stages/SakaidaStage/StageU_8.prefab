@@ -2357,7 +2357,7 @@ GameObject:
   - component: {fileID: 7371113591235675197}
   - component: {fileID: 3207181419065342008}
   m_Layer: 0
-  m_Name: SyageU_8
+  m_Name: StageU_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
