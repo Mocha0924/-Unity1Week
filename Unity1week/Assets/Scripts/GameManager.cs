@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using unityroom.Api;
 using System.Runtime.CompilerServices;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 
@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
     public GameObject StartPoint;
     public float GameTime { get; private set; } = 0;
     [SerializeField] private TextMeshProUGUI TimeText;
-    [NonSerialized]public bool TimeStop = true;
+    [NonSerialized] public bool TimeStop = true;
     [SerializeField] private Camera MainCamera;
     private bool isClear = false;
     private float BestTime;
     public bool isBest = false;
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
         else
             Destroy(gameObject);
@@ -47,9 +47,9 @@ public class GameManager : MonoBehaviour
         if (!TimeStop)
         {
             GameTime += Time.deltaTime;
-            TimeText.text = "Time:"+GameTime.ToString("000.00");
+            TimeText.text = "Time:" + GameTime.ToString("000.00");
         }
-          
+
     }
     public void NextStage()
     {
@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
             FadeImage.DOFade(0, FadeTime);
             return;
         }
-           
+
         FadeImage.DOFade(1, FadeTime)
-            .OnComplete(() => 
+            .OnComplete(() =>
             {
                 GameObject stage;
                 if (index >= Stages.Length)
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                     TimeStop = true;
                     isClear = true;
                     TimeText.text = "Time:" + GameTime.ToString("000.00");
-                    if(BestTime <=-1||BestTime>GameTime)
+                    if (BestTime <= -1 || BestTime > GameTime)
                     {
                         isBest = true;
                         BestTime = GameTime;
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
                     Player.DeadX = Player.StandardDeadX * (ClearStage.CameraSize / 6.0f);
                     Player.DeadY = Player.StandardDeadY * (ClearStage.CameraSize / 6.0f);
                 }
-                    
+
 
                 else
                 {
@@ -104,18 +104,18 @@ public class GameManager : MonoBehaviour
                 if (isClear)
                     start.text.text = "Clear";
                 else
-                    start.text.text = (index + 1).ToString() + "/"+ Stages.Length;
-                
-                    
+                    start.text.text = (index + 1).ToString() + "/" + Stages.Length;
+
+
                 NowStage = stage;
                 Player.PlayerReset(StartPoint);
                 FadeImage.DOFade(0, FadeTime).OnComplete(() =>
-                { 
-                    if(!isClear)
+                {
+                    if (!isClear)
                         TimeStop = false;
                 });
             });
-       
+
     }
     public void ContinueGame()
     {
@@ -130,5 +130,17 @@ public class GameManager : MonoBehaviour
         GameTime = 0;
         TimeText.text = "Time:" + GameTime.ToString("000.00");
         SetStage(Index);
+    }
+
+    public void ChangeScene(string StageName)
+    {
+        FadeImage.DOFade(1, FadeTime)
+           .OnComplete(() =>
+           {
+               if (StageName == "Normal")
+                   SceneManager.LoadScene("MainGame");
+               else if(StageName =="Extra")
+                   SceneManager.LoadScene("ExtraGame");
+           });
     }
 }

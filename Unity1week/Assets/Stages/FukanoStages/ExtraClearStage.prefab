@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "EXTRA\u30B9\u30C6\u30FC\u30B8"
+  m_text: "\u30CE\u30FC\u30DE\u30EB\u30B9\u30C6\u30FC\u30B8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
   m_sharedMaterial: {fileID: -4727316676341203138, guid: dc6a7b0f403bb8a4ea9f38fe42e0ff3b, type: 2}
@@ -936,7 +936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6852318665166469078}
   m_Layer: 0
-  m_Name: ClearStage
+  m_Name: ExtraClearStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,11 +973,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1032623240920395, guid: 9f0eff5d4e683a74fa7b68fed89f89b1, type: 3}
       propertyPath: m_Name
-      value: ExtraStage
+      value: NormalStage
       objectReference: {fileID: 0}
     - target: {fileID: 1032623240920395, guid: 9f0eff5d4e683a74fa7b68fed89f89b1, type: 3}
       propertyPath: m_TagString
-      value: Extra
+      value: Normal
       objectReference: {fileID: 0}
     - target: {fileID: 4865390807058118221, guid: 9f0eff5d4e683a74fa7b68fed89f89b1, type: 3}
       propertyPath: m_LocalPosition.x

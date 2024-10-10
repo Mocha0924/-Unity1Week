@@ -234,6 +234,16 @@ public class Player_Test : MonoBehaviour
             soundManager.PlaySe(GoalSound);
             PlayerStop = true;
         }
+        else if( collision.gameObject.tag =="Extra"|| collision.gameObject.tag == "Normal")
+        {
+            GoalController goal = collision.gameObject.GetComponent<GoalController>();
+            goal.SetGoal();
+            CameraShaker();
+            gameObject.SetActive(false);
+            soundManager.PlaySe(GoalSound);
+            PlayerStop = true;
+            gameManager.ChangeScene(collision.gameObject.tag);
+        }
     }
 
     private void Landing()
