@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     private bool isClear = false;
     private float BestTime;
     public bool isBest = false;
+
+    SoundManager soundManager => SoundManager.Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -138,9 +140,18 @@ public class GameManager : MonoBehaviour
            .OnComplete(() =>
            {
                if (StageName == "Normal")
+               {
                    SceneManager.LoadScene("MainGame");
+               }
                else if(StageName =="Extra")
+               {
                    SceneManager.LoadScene("ExtraGame");
+               }
            });
+    }
+
+    public void Backtitle()
+    {
+        SceneManager.LoadScene("Title");
     }
 }

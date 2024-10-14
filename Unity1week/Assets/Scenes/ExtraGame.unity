@@ -1209,35 +1209,35 @@ PrefabInstance:
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[4].StageOb
       value: 
-      objectReference: {fileID: 3774952260126913815, guid: e22e8160358ce4f4a991db268acf307e, type: 3}
+      objectReference: {fileID: 7360527633336380233, guid: 94663bed63fa04b40a349b9027460071, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[5].StageOb
       value: 
-      objectReference: {fileID: 7360527633336380233, guid: 94663bed63fa04b40a349b9027460071, type: 3}
+      objectReference: {fileID: 787899538111047651, guid: 226ba244dd7363844a9ec1b6b3c9352d, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[6].StageOb
       value: 
-      objectReference: {fileID: 787899538111047651, guid: 226ba244dd7363844a9ec1b6b3c9352d, type: 3}
+      objectReference: {fileID: 3388453319875851334, guid: 3fabcf87e134a844a955fc535a199d2d, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[7].StageOb
       value: 
-      objectReference: {fileID: 3388453319875851334, guid: 3fabcf87e134a844a955fc535a199d2d, type: 3}
+      objectReference: {fileID: 1693596652066099877, guid: 8949b48e283e3b245a77abd377184ebd, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[8].StageOb
       value: 
-      objectReference: {fileID: 1693596652066099877, guid: 8949b48e283e3b245a77abd377184ebd, type: 3}
+      objectReference: {fileID: 4990372178724482098, guid: e05ec103eda47ee4b8cbe41f7bff5c7f, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[9].StageOb
       value: 
-      objectReference: {fileID: 4990372178724482098, guid: e05ec103eda47ee4b8cbe41f7bff5c7f, type: 3}
+      objectReference: {fileID: 3575286409128432014, guid: 257959d53e4f3cc4e987cf21879598b0, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[10].StageOb
       value: 
-      objectReference: {fileID: 3575286409128432014, guid: 257959d53e4f3cc4e987cf21879598b0, type: 3}
+      objectReference: {fileID: 4336429510788082369, guid: 4e38fc2e5c7297847b096f50f8072679, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[11].StageOb
       value: 
-      objectReference: {fileID: 4336429510788082369, guid: 4e38fc2e5c7297847b096f50f8072679, type: 3}
+      objectReference: {fileID: 3774952260126913815, guid: e22e8160358ce4f4a991db268acf307e, type: 3}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[12].StageOb
       value: 
@@ -1328,11 +1328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[5].CameraSize
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[6].CameraSize
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: Stages.Array.data[7].CameraSize

@@ -76,7 +76,7 @@ public class Player_Test : MonoBehaviour
         MoveAction.actions["Jump"].started += Jump;
         MoveAction.actions["GravityChange"].started += GravityChange;
         MoveAction.actions["Restart"].performed += Restart;
-
+        MoveAction.actions["Title"].started += Backtitke;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -382,5 +382,12 @@ public class Player_Test : MonoBehaviour
         PlayerStop = true;
         gameManager.TimeStop = true;
         gameManager.RestartGame();
+    }
+
+    private void Backtitke(InputAction.CallbackContext context)
+    {
+        PlayerStop = true;
+        gameManager.TimeStop = true;
+        gameManager.Backtitle();
     }
 }
