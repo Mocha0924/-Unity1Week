@@ -28,6 +28,8 @@ public class TitleController : MonoBehaviour
                 FadeImage.DOFade(1, FadeTime)
                .OnComplete(() =>
                {
+                   soundManager.BGMText.color = new Color32(94, 38, 193, 255);
+                   soundManager.SEText.color = new Color32(94, 38, 193, 255);
                    SceneManager.LoadScene("MainGame");
                });
             }
@@ -41,6 +43,8 @@ public class TitleController : MonoBehaviour
                 FadeImage.DOFade(1, FadeTime)
                .OnComplete(() =>
                {
+                   soundManager.BGMText.color = new Color32(94, 38, 193, 255);
+                   soundManager.SEText.color = new Color32(94, 38, 193, 255);
                    SceneManager.LoadScene("MainGame");
                });
             }

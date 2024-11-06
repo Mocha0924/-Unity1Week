@@ -4,8 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
-using unityroom.Api;
-using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -28,6 +26,7 @@ public class GameManager : MonoBehaviour
     private bool isClear = false;
     private float BestTime;
     public bool isBest = false;
+    public bool isExtra;
 
     SoundManager soundManager => SoundManager.Instance;
     private void Awake()
@@ -39,7 +38,10 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        BestTime = PlayerPrefs.GetFloat("Time", -1);
+        if (isExtra)
+            BestTime = PlayerPrefs.GetFloat("ExtraTime", -1);
+        else
+            BestTime = PlayerPrefs.GetFloat("Time", -1);
         FadeImage.color = Color.black;
         SetStage(Index);
     }
@@ -79,9 +81,12 @@ public class GameManager : MonoBehaviour
                     {
                         isBest = true;
                         BestTime = GameTime;
-                        PlayerPrefs.SetFloat("Time", GameTime);
+                        if(isExtra)
+                            PlayerPrefs.SetFloat("ExtraTime", GameTime);
+                        else
+                            PlayerPrefs.SetFloat("Time", GameTime);
                         PlayerPrefs.Save();
-                        UnityroomApiClient.Instance.SendScore(1, BestTime, ScoreboardWriteMode.HighScoreAsc);
+                       
                     }
                     stage = Instantiate(ClearStage.StageOb);
                     MainCamera.orthographicSize = ClearStage.CameraSize;
@@ -142,10 +147,14 @@ public class GameManager : MonoBehaviour
                if (StageName == "Normal")
                {
                    SceneManager.LoadScene("MainGame");
+                   soundManager.BGMText.color = new Color32(94,38,193,255);
+                   soundManager.SEText.color = new Color32(94, 38, 193, 255);
                }
                else if(StageName =="Extra")
                {
                    SceneManager.LoadScene("ExtraGame");
+                   soundManager.BGMText.color = Color.white;
+                   soundManager.SEText.color = Color.white;
                }
            });
     }

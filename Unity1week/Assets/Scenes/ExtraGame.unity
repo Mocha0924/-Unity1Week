@@ -1163,6 +1163,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1324639592}
     - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: isBest
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
+      propertyPath: isExtra
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809653639003873641, guid: 255f77a05abe9a641b09ffd1c715aab2, type: 3}
       propertyPath: FadeTime
       value: 0.5
       objectReference: {fileID: 0}

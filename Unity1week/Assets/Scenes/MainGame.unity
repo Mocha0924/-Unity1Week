@@ -424,6 +424,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f33626f5788b88a469ea540d1e90ec52, type: 3}
+--- !u!114 &882382949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2699885033997955210, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+  m_PrefabInstance: {fileID: 1297447211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &897656689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 316505991499013265, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+  m_PrefabInstance: {fileID: 1297447211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925373960
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,8 +595,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290848350
+  m_fontColor: {r: 0.36862746, g: 0.14901961, b: 0.75686276, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -649,6 +671,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 316505991499013265, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 316505991499013265, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.13725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 316505991499013265, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 316505991499013265, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290061190
+      objectReference: {fileID: 0}
     - target: {fileID: 2589241221355713624, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -656,6 +694,22 @@ PrefabInstance:
     - target: {fileID: 2589241221355713624, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699885033997955210, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699885033997955210, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.13725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699885033997955210, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699885033997955210, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4289995655
       objectReference: {fileID: 0}
     - target: {fileID: 4007881042225767154, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_Name
@@ -673,6 +727,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4702893700774286863, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: SEText
+      value: 
+      objectReference: {fileID: 897656689}
+    - target: {fileID: 4702893700774286863, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
+      propertyPath: BGMText
+      value: 
+      objectReference: {fileID: 882382949}
     - target: {fileID: 6286054539983184527, guid: 53a5a77518d2ca545a35a447ae19634c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

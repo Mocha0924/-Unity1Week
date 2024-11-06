@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource BGMAudio;
     [SerializeField] private AudioClip GameBGM;
+    public TextMeshProUGUI BGMText;
+    public TextMeshProUGUI SEText;
 
     // Start is called before the first frame update
     void Awake()
