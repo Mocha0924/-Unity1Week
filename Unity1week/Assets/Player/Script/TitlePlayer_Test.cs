@@ -46,11 +46,13 @@ public class TitlePlayer_Test : MonoBehaviour
     private void OnEnable()
     {
         MoveAction.actions["GravityChange"].started += GravityChange;
+        MoveAction.actions["Finish"].started += FinishGame;
     }
 
     private void OnDisable()
     {
         MoveAction.actions["GravityChange"].started -= GravityChange;
+        MoveAction.actions["Finish"].started -= FinishGame;
     }
 
 
@@ -221,5 +223,14 @@ public class TitlePlayer_Test : MonoBehaviour
       
         return Physics2D.Linecast(StartGroundPos.position - transform.right * 0.2f, FinishGroundPos.position - transform.right * 0.2f, FloorLayer) ||
                Physics2D.Linecast(StartGroundPos.position + transform.right * 0.2f, FinishGroundPos.position + transform.right * 0.2f, FloorLayer);
+    }
+
+    private void FinishGame(InputAction.CallbackContext context)
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
     }
 }

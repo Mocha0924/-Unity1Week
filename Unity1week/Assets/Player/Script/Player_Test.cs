@@ -77,6 +77,7 @@ public class Player_Test : MonoBehaviour
         MoveAction.actions["GravityChange"].started += GravityChange;
         MoveAction.actions["Restart"].performed += Restart;
         MoveAction.actions["Title"].started += Backtitke;
+        MoveAction.actions["Finish"].started += FinishGame;
     }
 
     private void OnMove(InputAction.CallbackContext context)
@@ -389,5 +390,14 @@ public class Player_Test : MonoBehaviour
         PlayerStop = true;
         gameManager.TimeStop = true;
         gameManager.Backtitle();
+    }
+
+    private void FinishGame(InputAction.CallbackContext context)
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
     }
 }
